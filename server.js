@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+
 
 const app = express();
 
@@ -40,7 +43,18 @@ function initial() {
     name: "admin"
   });
 }
-
+//Swagger Configuration
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title:'RBAC API',
+      version:'1.0.0'
+    },
+  },
+  apis: ['./app/routes/*.js'], // files containing annotations as above
+};
+const swaggerDocs = swaggerJSDoc(options);
 
 // simple route
 app.get("/", (req, res) => {
@@ -49,6 +63,9 @@ app.get("/", (req, res) => {
 
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+
+//swagger route
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

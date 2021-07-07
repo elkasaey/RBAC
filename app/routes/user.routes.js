@@ -9,7 +9,16 @@ module.exports = function(app) {
     );
     next();
   });
-
+  /**
+   * @swagger
+   * /api/test/all:
+   *   get:
+   *     description: Get all user
+   *     responses:
+   *       200:
+   *         description: Success
+   *
+   */
   app.get("/api/test/all", controller.allAccess);
 
   app.get(
