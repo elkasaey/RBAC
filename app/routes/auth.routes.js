@@ -9,7 +9,39 @@ module.exports = function(app) {
     );
     next();
   });
-
+  /**
+   * @swagger
+   * /api/auth/signup:
+   *   post:
+   *     description: Create an user
+   *     parameters:
+   *     - in : body
+   *       name: user
+   *       schema:
+   *          type : object
+   *          required:
+   *            - username
+   *            - password
+   *            - email
+   *            - role
+   *          properties:
+   *              username :
+   *                  type: string
+   *              email :
+   *                   type : string
+   *                   example : any@host.com
+   *              password :
+   *                   type : string
+   *              role :
+   *                  type : array
+   *                  item :
+   *                        type : String
+   *                  example : ["moderator","user"]
+   *     responses:
+   *       201:
+   *         description: Created
+   *
+   */
   app.post(
     "/api/auth/signup",
     [
@@ -18,6 +50,30 @@ module.exports = function(app) {
     ],
     controller.signup
   );
-
+  /**
+   * @swagger
+   * /api/auth/signin:
+   *   post:
+   *     description: user login
+   *     parameters:
+   *     - in : body
+   *       name: user
+   *       schema:
+   *          type : object
+   *          required:
+   *            - username
+   *            - password
+   *            - email
+   *            - role
+   *          properties:
+   *              username :
+   *                  type: string
+   *              password :
+   *                   type : string
+   *     responses:
+   *       201:
+   *         description: Created
+   *
+   */
   app.post("/api/auth/signin", controller.signin);
 };
