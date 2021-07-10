@@ -11,31 +11,24 @@ module.exports = function(app) {
   });
   /**
    * @swagger
-   * /api/test/all:
+   * //api/users:
    *   get:
-   *     description: Get all user
+   *     description: Get all user for admin
+   *     parameters:
+   *    - in: header
+   *      name: x-access-token
+   *      schema:
+   *        type: string
+   *        format: uuid
+   *       required: true
    *     responses:
    *       200:
    *         description: Success
    *
    */
-  app.get("/api/test/all", controller.allAccess);
-
   app.get(
-    "/api/test/user",
-    [authJwt.verifyToken],
-    controller.userBoard
-  );
-
-  app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
-  );
-
-  app.get(
-    "/api/test/admin",
+    "/api/users",
     [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
+    controller.findAll
   );
 };

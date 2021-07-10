@@ -32,7 +32,7 @@ module.exports = function(app) {
    *                   example : any@host.com
    *              password :
    *                   type : string
-   *              role :
+   *              roles :
    *                  type : array
    *                  item :
    *                        type : String
