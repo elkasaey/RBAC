@@ -11,16 +11,9 @@ module.exports = function(app) {
   });
   /**
    * @swagger
-   * //api/users:
+   *  /api/users:
    *   get:
-   *     description: Get all user for admin
-   *     parameters:
-   *    - in: header
-   *      name: x-access-token
-   *      schema:
-   *        type: string
-   *        format: uuid
-   *       required: true
+   *     description: Get all user for admin send token in header
    *     responses:
    *       200:
    *         description: Success
